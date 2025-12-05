@@ -18,6 +18,14 @@ public class Agencia {
     @Column(nullable = false)   // obrigatório
     private String nome;
 
+    public Agencia(){}
+
+    public Agencia(Long id, String numero, String nome) {
+        this.id = id;
+        this.numero = numero;
+        this.nome = nome;
+    }
+
     // getters e setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

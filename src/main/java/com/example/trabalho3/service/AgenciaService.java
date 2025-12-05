@@ -62,7 +62,7 @@ public class AgenciaService {
         if (dados.getNumero() != null && !dados.getNumero().isBlank()) {
             if (!dados.getNumero().equals(existente.getNumero()) &&
                     repository.existsByNumero(dados.getNumero())) {
-                throw new IllegalArgumentException("ja esciste outra agencia com esse numero.");
+                throw new IllegalArgumentException("ja existe outra agencia com esse numero.");
             }
             existente.setNumero(dados.getNumero());
         }

@@ -15,8 +15,10 @@ public class Banco {
     @Column
     private String nome;
 
-    @Column
+    //Notnull para não aceitar nulo e nullable para aceitar os valores do tamanho igual 14 caracteres
+    @Column(nullable = false, unique = true, length = 14)
     @NotNull(message = "CNPJ não pode ser nulo ")
+
     private String cnpj;
 
 
