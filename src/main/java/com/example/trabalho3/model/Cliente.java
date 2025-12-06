@@ -12,6 +12,10 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+    private Integer id;
+
+    @Column
     private String nome;
 
     @Column
@@ -19,14 +23,23 @@ public class Cliente {
     private String cpf;
 
     //@OneToMany(mappedBy = "cliente")
-    //private List<Conta> contas;
+    //private List<Conta> conta;
 
     public Cliente(){}
 
 
-    public Cliente(String nome, String cpf) {
+    public Cliente(Integer id,String nome, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -50,12 +63,12 @@ public class Cliente {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return Objects.equals(nome, cliente.nome) && Objects.equals(cpf, cliente.cpf);
+        return Objects.equals(id, cliente.id) && Objects.equals(nome, cliente.nome) && Objects.equals(cpf, cliente.cpf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, cpf);
+        return Objects.hash(id, nome, cpf);
     }
 
     @Override
