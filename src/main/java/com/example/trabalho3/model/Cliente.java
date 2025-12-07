@@ -12,7 +12,6 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     private Integer id;
 
     @Column

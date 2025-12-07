@@ -25,11 +25,30 @@ public class ClienteService {
     public List<Cliente> buscaTodos(){return clienteRepository.findAll();}
 
     //buscar por id
-    public Cliente busca(String id){
-        Optional<Cliente> busca = clienteRepository.findById(id);
+    public Cliente busca(String cpf){
+        Optional<Cliente> busca = clienteRepository.findById(cpf);
         return busca.orElseThrow(() ->new RegistroNaoEncontradoException("nao encontrado"));
-
     }
+    //busca por nome
+    public List<Cliente> buscaNome(String nome){
+        return clienteRepository.findClienteByNomeContains(nome);
+    }
+    //editar dados
+    public Cliente editar(String cpf, Cliente cliente){
+        Cliente clienteBusca = this.busca(cpf);
+
+        clienteBusca.setCpf(cliente.getCpf());
+        clienteBusca.setNome(cliente.getNome());
+
+        clienteRepository.save(clienteBusca);
+
+        return clienteBusca;
+    }
+    public void remover(String cpf){
+        Cliente cpfBusca = this.busca(cpf);
+        clienteRepository.delete(cpfBusca);
+    }
+
 
 
 }
