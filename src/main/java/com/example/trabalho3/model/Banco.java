@@ -28,11 +28,16 @@ public class Banco {
     public Banco(){}
 
 
-    public Banco(String codigo, String cnpj, String nome) {
+    public Banco(Integer id, String codigo, String cnpj, String nome) {
+        this.id = id;
         this.codigo = codigo;
         this.cnpj = cnpj;
         this.nome = nome;
     }
+
+    public void setId(Integer id) {}
+
+    public Integer getId() { return id;}
 
     public String getCodigo() {
         return codigo;

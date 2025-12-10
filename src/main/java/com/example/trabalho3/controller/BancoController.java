@@ -2,6 +2,7 @@ package com.example.trabalho3.controller;
 
 import com.example.trabalho3.model.Banco;
 import com.example.trabalho3.service.BancoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,12 +27,14 @@ public class BancoController {
     //salvar cliente
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Banco> adicionar(@RequestBody Banco banco) {
+    public ResponseEntity<Banco> adicionar(@RequestBody @Valid Banco banco) {
         return ResponseEntity.status(HttpStatus.CREATED).body(bancoService.salvar(banco));
     }
 
     //buscar por id
-    @GetMapping(value = {"{banco}"}, produces = MediaType.APPLICATION_JSON_VALUE,
+    //editar
+
+    @PutMapping(value = {"{banco}"}, produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Banco> editar (@PathVariable ("banco") Integer id,@RequestBody Banco banco) {
         return ResponseEntity.status(HttpStatus.OK).body(bancoService.editar(id, banco));
