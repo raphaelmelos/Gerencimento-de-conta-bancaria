@@ -44,6 +44,7 @@ public class ClienteService {
 
         return clienteBusca;
     }
+    //remover por id
     public void remover(Integer id){
         Cliente idBusca = this.busca(id);
         clienteRepository.delete(idBusca);

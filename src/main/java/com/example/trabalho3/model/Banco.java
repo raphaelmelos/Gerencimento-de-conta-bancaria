@@ -11,11 +11,12 @@ import java.util.Objects;
 public class Banco {
 
     @Id
+    private Integer id;
+
     @NotBlank(message = "Codigo da conta não pode ser nulo ")
     private String codigo;
 
     @Column
-
     private String nome;
 
     //Notnull para não aceitar nulo e nullable para aceitar os valores do tamanho igual 14 caracteres
