@@ -10,10 +10,10 @@ public class Conta {
 
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
 
     @Column
-    private int numero;
+    private String numero;
 
     @Column
     private double saldo;
@@ -30,7 +30,7 @@ public class Conta {
 
     }
 
-    public Conta(int id, int numero, double saldo, Cliente cliente, Agencia agencia) {
+    public Conta(int id,String numero, double saldo, Cliente cliente, Agencia agencia) {
         this.id = id;
         this.numero = numero;
         this.saldo = saldo;
@@ -38,19 +38,19 @@ public class Conta {
         this.agencia = agencia;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

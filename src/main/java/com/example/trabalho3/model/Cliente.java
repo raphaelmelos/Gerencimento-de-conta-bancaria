@@ -1,7 +1,9 @@
 package com.example.trabalho3.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.mapping.List;
 
 import java.util.Objects;
@@ -11,18 +13,17 @@ import java.util.Objects;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column
+    @NotBlank(message = "Nome não pode ser nulo")
     private String nome;
 
     @Column
-    @NotNull(message = "Cpf não pode ser nulo")
+    @NotBlank (message = "Cpf não pode ser nulo")
+    @Size(min =11,max = 11, message = "Cpf tem que ter 11 digitos")
     private String cpf;
 
-    //@OneToMany(mappedBy = "cliente")
-    //private List<Conta> conta;
 
     public Cliente(){}
 

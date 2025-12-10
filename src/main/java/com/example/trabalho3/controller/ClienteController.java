@@ -30,25 +30,25 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvar(cliente));
     }
 
-    //busca por cpf
+    //busca por id
     @GetMapping(value = {"{cliente}"}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Cliente> get(@PathVariable("cliente") String cpf) {
-        Cliente retorno = clienteService.busca(cpf);
+    public ResponseEntity<Cliente> get(@PathVariable("cliente") Integer id) {
+        Cliente retorno = clienteService.busca(id);
         return ResponseEntity.status(HttpStatus.OK).body(retorno);
     }
 
 
-    //edita um user recebendo cpf no localhost:8080/cliente/cpf
+    //edita um user recebendo id no localhost:8080/cliente/cpf
     @PutMapping(value = {"{cliente}"}, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Cliente> editar(@PathVariable("cliente") String cpf, @RequestBody Cliente cliente) {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteService.editar(cpf, cliente));
+    public ResponseEntity<Cliente> editar(@PathVariable("cliente") Integer id, @RequestBody Cliente cliente) {
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.editar(id , cliente));
     }
 
-    //remover user
-    @DeleteMapping(value = {"{cep}"})
-    public ResponseEntity<Cliente> remover(@PathVariable("cliente") String cpf) {
-        clienteService.remover(cpf);
+    //remover cliente por id
+    @DeleteMapping(value = {"{cliente}"})
+    public ResponseEntity<Cliente> remover(@PathVariable("cliente") Integer id) {
+        clienteService.remover(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

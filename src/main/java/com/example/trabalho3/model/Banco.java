@@ -1,6 +1,7 @@
 package com.example.trabalho3.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
@@ -8,17 +9,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "banco")
 public class Banco {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotBlank(message = "Codigo da conta não pode ser nulo ")
     private String codigo;
 
     @Column
+
     private String nome;
 
     //Notnull para não aceitar nulo e nullable para aceitar os valores do tamanho igual 14 caracteres
     @Column(nullable = false, unique = true, length = 14)
     @NotNull(message = "CNPJ não pode ser nulo ")
-
     private String cnpj;
 
 
