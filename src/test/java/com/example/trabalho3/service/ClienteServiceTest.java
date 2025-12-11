@@ -10,7 +10,9 @@ import org.mockito.MockitoAnnotations;
 
 import static ch.qos.logback.classic.spi.ThrowableProxyVO.build;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ClienteServiceTest {
 
@@ -18,7 +20,7 @@ public class ClienteServiceTest {
     private ClienteRepository clienteRepository;
 
     @InjectMocks
-    private ClienteService clienteService;
+    private ClienteService service;
 
     @BeforeEach
     public void SetUp(){
@@ -27,16 +29,22 @@ public class ClienteServiceTest {
 
     @Test
     void testaAdicao(){
-        Cliente inserir = build(1,"Rphae", "siahha");
+        Cliente inserir = build(1,"Raphael", "84703385015");
 
         doAnswer(invocation -> {
             return inserir;
-        }).when(clienteRepository.save(inserir));
+        }).when(clienteRepository).save(eq(inserir));
 
-        Cliente retorno = clienteService.salvar(inserir);
+        Cliente retorno = service.salvar(inserir);
 
         verify(clienteRepository, times(1)).save(eq(inserir));
-        assertThat("Não retornou o clinete"), retorno.getNome(), equals(inserir.getNome()));
+        assertThat("sasbasas", retorno.getCpf(), equalTo(inserir.getCpf()));
     }
+
+    private Cliente build(Integer id, String nome, String cpf){
+        return new Cliente(id,nome,cpf);
+    }
+
+
 
 }
